@@ -23,10 +23,10 @@ public class SceneManager {
         currentScene = SCENE.OPENING;
     }
 
-    public static void changeScene(int button) {
+    public static void changeScene(int action) {
         switch (currentScene) {
             case OPENING:
-                switch (button) {
+                switch (action) {
                     case 0:
                         scene = new Level(rows++, columns);
                         currentScene = SCENE.LEVEL;
@@ -41,7 +41,7 @@ public class SceneManager {
                 break;
 
             case LEVEL:
-                switch (button) {
+                switch (action) {
                     case 0:
                         rows = 1;
                         scene = new GameOver();
