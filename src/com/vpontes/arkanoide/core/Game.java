@@ -11,7 +11,12 @@ public class Game {
     private static Game instance;
 
     private long lastTime;
+    private long deltaTime;
 
+    public long getDeltaTime(){
+        return deltaTime;
+    }
+    
     private int fps;
     long a, b;
 
@@ -51,6 +56,8 @@ public class Game {
             //this.canvas.getGraphics().drawImage(this.image, (int)this.x, (int)this.y, this.w, this.h, null);
             SceneManager.draw(this.canvas.getGraphics());
 
+            deltaTime = (currentTime - lastTime) / 1000000;
+            
             this.canvas.swapBuffers();
 
             this.lastTime = currentTime;
@@ -58,14 +65,15 @@ public class Game {
             // FPS
             a = System.nanoTime();
             fps++;
+            
             if (a - b >= 1000000000) {
-                this.canvas.setTitle("Arkanoid - fps: " + fps);
+                System.out.println("FPS: " + fps);
                 fps = 0;
                 b = a;
             }
 
             try {
-                Thread.sleep(33);
+                Thread.sleep(18);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,6 +1,7 @@
 package com.vpontes.arkanoide.gameobjects;
 
 import com.vpontes.arkanoide.core.Game;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -8,9 +9,9 @@ public class Paddle extends GameObject implements KeyListener, Dynamic {
 
     boolean LeftPressed = false;
     boolean RightPressed = false;
-    int velocidade;
+    float velocidade;
 
-    public Paddle(float x, float y, int w, int h, String image, int velocidade) {
+    public Paddle(float x, float y, int w, int h, String image, float velocidade) {
         super(x, y, w, h, image);
         Game.getInstance().getCanvas().addKeyListener(this);
         this.velocidade = velocidade;
@@ -20,10 +21,10 @@ public class Paddle extends GameObject implements KeyListener, Dynamic {
     public void update() {
         // Input
         if (LeftPressed) {
-            this.x -= velocidade;
+            this.x -= velocidade * Game.getInstance().getDeltaTime();
         }
         if (RightPressed) {
-            this.x += velocidade;
+            this.x += velocidade * Game.getInstance().getDeltaTime();
         }
         this.fixedLimits();
     }
@@ -63,5 +64,10 @@ public class Paddle extends GameObject implements KeyListener, Dynamic {
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+    
+    @Override
+    public void draw(Graphics g){
+        super.draw(g);
     }
 }

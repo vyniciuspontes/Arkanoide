@@ -19,7 +19,7 @@ public class Congrats extends Scene {
 
     @Override
     public void update() {
-        System.out.println("Congrats");
+        //System.out.println("Congrats");
 
         if (i++ > 1000) {
             SceneManager.changeScene(0);

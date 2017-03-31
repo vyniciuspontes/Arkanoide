@@ -31,10 +31,6 @@ public class Level extends Scene {
     
     private Random randomColor;
 
-    /**
-     * Lista que agrupa os gameObjects do jogo
-     */
-    private List<GameObject> gameObjects = new ArrayList<>();
     private List<Rect> rects = new ArrayList<>();
 
     private String[] blocksImages = {
@@ -47,14 +43,11 @@ public class Level extends Scene {
     public Level(int rows, int columns) {
 
         this.bg = new Background(0, 0, 800, 600, ResourceManager.BACKGROUND);
-        this.ball = new Ball(384, 284, 33, 33, ResourceManager.BALL, 10);
-        this.paddle = new Paddle(384, 500, 100, 15, ResourceManager.PADDLE, 20);
+        this.ball = new Ball(384, 284, 33, 33, ResourceManager.BALL, 1f);
+        this.paddle = new Paddle(384, 500, 100, 15, ResourceManager.PADDLE, 0.5f);
         randomColor = new Random();
         
         setupRects(rows, columns);
-        gameObjects.add(this.bg);
-        gameObjects.add(this.ball);
-        gameObjects.add(this.paddle);
     }
 
     private void setupRects(int rows, int columns) {
@@ -108,9 +101,9 @@ public class Level extends Scene {
     @Override
     public void draw(Graphics g) {
         
-        gameObjects.forEach((go) -> {
-            go.draw(g);
-        });
+        bg.draw(g);
+        ball.draw(g);
+        paddle.draw(g);
 
         rects.forEach((rect) -> {
             rect.draw(g);

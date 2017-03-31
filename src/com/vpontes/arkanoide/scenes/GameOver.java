@@ -19,7 +19,7 @@ public class GameOver extends Scene {
 
     @Override
     public void update() {
-        System.out.println("GameOver");
+        //System.out.println("GameOver");
 
         if (i++ > 50) {
             SceneManager.changeScene(0);

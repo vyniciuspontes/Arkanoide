@@ -1,6 +1,8 @@
 package com.vpontes.arkanoide.gameobjects;
 
+import com.vpontes.arkanoide.core.Game;
 import com.vpontes.arkanoide.core.SceneManager;
+import java.awt.Graphics;
 
 public class Ball extends GameObject implements Dynamic {
 
@@ -19,12 +21,13 @@ public class Ball extends GameObject implements Dynamic {
         super(x, y, w, h, image);
 
         this.speedX = this.speedY = speed;
+        changeDirection();
     }
 
     @Override
     public void update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        this.x += this.speedX * Game.getInstance().getDeltaTime();
+        this.y += this.speedY * Game.getInstance().getDeltaTime();
 
         this.collision();
     }
@@ -46,5 +49,10 @@ public class Ball extends GameObject implements Dynamic {
             this.speedY *= -1;
             SceneManager.changeScene(0);
         }
+    }
+    
+    @Override
+    public void draw(Graphics g){
+        super.draw(g);
     }
 }

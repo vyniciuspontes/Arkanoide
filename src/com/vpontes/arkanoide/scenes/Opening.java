@@ -18,7 +18,7 @@ public class Opening extends Scene {
 
     @Override
     public void update() {
-        System.out.println("Opening");
+        //System.out.println("Opening");
 
         if (milliseconds++ > 50) {
             SceneManager.changeScene(0);
