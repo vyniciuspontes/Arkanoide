@@ -27,13 +27,13 @@ public class Level extends Scene {
     /**
      * Palheta do jogo
      */
-    private Paddle paddle;
+    private final Paddle paddle;
     
-    private Random randomColor;
+    private final Random randomColor;
 
-    private List<Rect> rects = new ArrayList<>();
+    private final List<Rect> rects = new ArrayList<>();
 
-    private String[] blocksImages = {
+    private final String[] blocksImages = {
         ResourceManager.BLUE_BLOCK,
         ResourceManager.YELLOW_BLOCK,
         ResourceManager.GREEN_BLOCK,
@@ -50,6 +50,9 @@ public class Level extends Scene {
         setupRects(rows, columns);
     }
 
+    /**
+     * Organiza os retangulos em suas posicoes iniciais
+     */
     private void setupRects(int rows, int columns) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -95,7 +98,7 @@ public class Level extends Scene {
     }
 
     /**
-     * Atualiza a cada frame desenhando as imagens dos objetos
+     * Atualiza a cada frame desenhando os objetos
      * @param g
      */
     @Override
