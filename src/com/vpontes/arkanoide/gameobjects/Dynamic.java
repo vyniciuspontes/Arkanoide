@@ -11,5 +11,5 @@ package com.vpontes.arkanoide.gameobjects;
  */
 public interface Dynamic {
 
-    public void update();
+    public void update(float deltaTime);
 }

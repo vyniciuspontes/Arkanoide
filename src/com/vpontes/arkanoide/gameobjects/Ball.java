@@ -1,7 +1,6 @@
 package com.vpontes.arkanoide.gameobjects;
 
-import com.vpontes.arkanoide.core.Game;
-import com.vpontes.arkanoide.core.SceneManager;
+import com.vpontes.arkanoide.scenes.SceneManager;
 import java.awt.Graphics;
 
 public class Ball extends GameObject implements Dynamic {
@@ -21,31 +20,31 @@ public class Ball extends GameObject implements Dynamic {
         super(x, y, w, h, image);
 
         this.speedX = this.speedY = speed;
-        changeDirection();
+        speedY *= -1;
     }
 
     @Override
-    public void update() {
-        this.x += this.speedX * Game.getInstance().getDeltaTime();
-        this.y += this.speedY * Game.getInstance().getDeltaTime();
+    public void update(float deltaTime) {
+        this.x += this.speedX * deltaTime;
+        this.y += this.speedY * deltaTime;
 
-        this.collision();
+        this.collision(deltaTime);
     }
 
     public void changeDirection() {
         speedY *= -1;
     }
 
-    private void collision() {
-        if (this.x + (this.speedX * Game.getInstance().getDeltaTime()) < 0) {
+    private void collision(float deltaTime) {
+        if (this.x + (this.speedX * deltaTime) < 0) {
             this.speedX *= -1;
-        } else if (this.x > 600 - 33 - (this.speedX * Game.getInstance().getDeltaTime())) {
+        } else if (this.x > 600 - 33 - (this.speedX * deltaTime)) {
             this.speedX *= -1;
         }
 
-        if (this.y + 33 + (this.speedY * Game.getInstance().getDeltaTime())< 0) {
+        if (this.y + 33 + (this.speedY * deltaTime)< 0) {
             this.speedY *= -1;
-        } else if (this.y > 600 - 33 - (this.speedY * Game.getInstance().getDeltaTime())) {
+        } else if (this.y > 600 - 33 - (this.speedY * deltaTime)) {
             this.speedY *= -1;
             SceneManager.changeScene(0);
         }

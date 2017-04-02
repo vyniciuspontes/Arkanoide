@@ -1,6 +1,7 @@
 package com.vpontes.arkanoide.scenes;
 
-import com.vpontes.arkanoide.core.SceneManager;
+import com.vpontes.gameframework.core.Game;
+import com.vpontes.gameframework.core.Screen;
 import com.vpontes.arkanoide.gameobjects.Background;
 import com.vpontes.arkanoide.gameobjects.Ball;
 import com.vpontes.arkanoide.utils.Collision;
@@ -14,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Level extends Scene {
+public class Level extends Screen {
 
     /**
      * Background da tela de jogo
@@ -40,11 +41,12 @@ public class Level extends Scene {
         ResourceManager.RED_BLOCK
     };
 
-    public Level(int rows, int columns) {
-
+    public Level(Game game, int rows, int columns) {
+        super(game);
         this.bg = new Background(0, 0, 800, 600, ResourceManager.BACKGROUND);
-        this.ball = new Ball(384, 284, 33, 33, ResourceManager.BALL, 0.2f);
-        this.paddle = new Paddle(384, 500, 100, 15, ResourceManager.PADDLE, 0.5f);
+        this.ball = new Ball(384, 284, 33, 33, ResourceManager.BALL, 100f);
+        this.paddle = new Paddle(384, 500, 100, 15, ResourceManager.PADDLE, 100f);
+        this.game.addKeyListener(paddle);
         randomColor = new Random();
         
         setupRects(rows, columns);
@@ -69,12 +71,13 @@ public class Level extends Scene {
 
     /**
      * Atualiza a cada frame dando dinamismo as ações dos objetos
+     * @param deltaTime
      */
     @Override
-    public void update() {
+    public void update(float deltaTime) {
 
-        ball.update();
-        paddle.update();
+        ball.update(deltaTime);
+        paddle.update(deltaTime);
 
         //caso a bola colida com a palheta a bola muda de direcao
         if (Collision.collide(this.ball, this.paddle)) {
@@ -99,6 +102,7 @@ public class Level extends Scene {
 
     /**
      * Atualiza a cada frame desenhando os objetos
+     * @param deltaTime
      * @param g
      */
     @Override
