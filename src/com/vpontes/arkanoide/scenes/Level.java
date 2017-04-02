@@ -43,7 +43,7 @@ public class Level extends Scene {
     public Level(int rows, int columns) {
 
         this.bg = new Background(0, 0, 800, 600, ResourceManager.BACKGROUND);
-        this.ball = new Ball(384, 284, 33, 33, ResourceManager.BALL, 1f);
+        this.ball = new Ball(384, 284, 33, 33, ResourceManager.BALL, 0.2f);
         this.paddle = new Paddle(384, 500, 100, 15, ResourceManager.PADDLE, 0.5f);
         randomColor = new Random();
         
