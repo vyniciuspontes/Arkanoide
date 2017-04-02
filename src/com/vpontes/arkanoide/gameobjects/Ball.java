@@ -29,23 +29,23 @@ public class Ball extends GameObject implements Dynamic {
         this.x += this.speedX * Game.getInstance().getDeltaTime();
         this.y += this.speedY * Game.getInstance().getDeltaTime();
 
-        this.limitBorders();
+        this.collision();
     }
 
     public void changeDirection() {
         speedY *= -1;
     }
 
-    private void limitBorders() {
-        if (this.x + (this.speedX * Game.getInstance().getDeltaTime()) < 0) {
+    private void collision() {
+        if (this.x < 0) {
             this.speedX *= -1;
-        } else if (this.x > 600 - 33 - (this.speedX * Game.getInstance().getDeltaTime())) {
+        } else if (this.x > 600 - 32) {
             this.speedX *= -1;
         }
 
-        if (this.y + (this.speedY * Game.getInstance().getDeltaTime()) < 0) {
+        if (this.y < 0) {
             this.speedY *= -1;
-        } else if (this.y > 600 - 33 - ((this.speedY * Game.getInstance().getDeltaTime()))) {
+        } else if (this.y > 600 - 32) {
             this.speedY *= -1;
             SceneManager.changeScene(0);
         }

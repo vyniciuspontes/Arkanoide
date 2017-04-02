@@ -50,9 +50,6 @@ public class Level extends Scene {
         setupRects(rows, columns);
     }
 
-    /**
-     * Organiza os retangulos lado a lado numa posicao inicial
-     */
     private void setupRects(int rows, int columns) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
